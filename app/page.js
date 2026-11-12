@@ -29,7 +29,8 @@ return <main id="top">
 <section className="w px-6 md:px-12 py-24"><div className="max-w-6xl mx-auto"><Reveal><p className="text-xs tracking-[.4em] uppercase text-black/50 mb-4">Software</p><h2 className="font-serif text-4xl md:text-6xl">{t.pc_title}</h2><p className="mt-4 text-black/60 max-w-2xl mb-12">{t.pc_intro}</p></Reveal>
 <div className="grid md:grid-cols-2 gap-6"><Reveal><PCCard t={t} e="ng"/></Reveal><Reveal d={.1}><PCCard t={t} e="mf"/></Reveal></div></div></section>
 {C.length>0&&<section className="px-6 md:px-12 py-24"><div className="max-w-6xl mx-auto"><Reveal><h2 className="font-serif text-4xl md:text-6xl text-center mb-14">{t.clients_title}</h2><Clients items={C}/></Reveal></div></section>}
-{P.length>0&&<section className="w px-6 md:px-12 py-24"><div className="max-w-6xl mx-auto"><Reveal><h2 className="font-serif text-4xl md:text-6xl">{t.products_title}</h2><p className="mt-4 text-black/60 mb-12">{t.products_sub}</p></Reveal>
+<section className="w px-6 md:px-12 py-24"><div className="max-w-6xl mx-auto"><Reveal><h2 className="font-serif text-4xl md:text-6xl">{t.products_title}</h2><p className="mt-4 text-black/60 mb-12">{t.products_sub}</p></Reveal>
+{!P.length&&<p className="text-black/40">Products coming soon.</p>}
 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">{P.slice(0,3).map((p,i)=><Reveal key={p.id} d={i*.08}><PCard p={p}/></Reveal>)}</div>
-<Reveal><Link href="/products" className="btn mt-12">View all products</Link></Reveal></div></section>}
+<Reveal><Link href="/products" className="btn mt-12">View all products</Link></Reveal></div></section>
 </main>}
