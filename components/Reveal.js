@@ -1,2 +1,4 @@
-'use client';import {motion} from 'framer-motion';
-export default function Reveal({children,d=0,className=''}){return <motion.div className={className} initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} viewport={{once:true,margin:'-60px'}} transition={{duration:.9,delay:d,ease:[.22,1,.36,1]}}>{children}</motion.div>}
+'use client';import {useEffect,useRef} from 'react';
+export default function Reveal({children,d=0,className=''}){const r=useRef();
+useEffect(()=>{const o=new IntersectionObserver(([e])=>{if(e.isIntersecting){e.target.classList.add('on');o.disconnect()}},{threshold:.08});o.observe(r.current);return()=>o.disconnect()},[]);
+return <div ref={r} style={{transitionDelay:d+'s'}} className={'rv '+className}>{children}</div>}

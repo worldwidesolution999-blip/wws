@@ -1,9 +1,16 @@
 @tailwind base;@tailwind components;@tailwind utilities;
-html{scroll-behavior:smooth}body{background:#000;color:#fff;font-family:var(--f-sans)}
-::selection{background:#fff;color:#000}
-.grain{background:radial-gradient(60% 50% at 50% 0%,rgba(255,255,255,.14),transparent 70%)}
-@keyframes mq{to{transform:translateX(-50%)}}.mq{animation:mq 28s linear infinite}
+html{scroll-behavior:smooth}body{background:#08183A;color:#fff;font-family:var(--f-sans),'Segoe UI',Arial,sans-serif;font-weight:300}
+h1,h2,h3,.font-serif{font-family:var(--f-serif),'Times New Roman',Georgia,serif;font-weight:500}
+::selection{background:#fff;color:#08183A}
+.w{background:#fff;color:#08183A}
+.grain{background:radial-gradient(60% 50% at 50% 0%,rgba(90,140,255,.24),transparent 70%)}
+@keyframes mq{to{transform:translateX(-50%)}}.mq{animation:mq 30s linear infinite}
 @keyframes fl{50%{transform:translateY(-14px) rotate(2deg)}}.fl{animation:fl 7s ease-in-out infinite}
-.btn{display:inline-block;border:1px solid #fff;padding:.9rem 2rem;letter-spacing:.2em;font-size:.75rem;text-transform:uppercase;transition:.4s}
-.btn:hover{background:#fff;color:#000}
-.inp{width:100%;background:#000;border:1px solid #333;color:#fff;padding:.75rem 1rem;outline:none}.inp:focus{border-color:#fff}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}.rv.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.mq,.fl{animation:none}}
+.btn{display:inline-block;border:1px solid currentColor;padding:.9rem 2rem;letter-spacing:.2em;font-size:.75rem;text-transform:uppercase;transition:.4s;background:transparent;color:inherit;cursor:pointer}
+.btn:hover{background:#fff;color:#08183A}.w .btn:hover{background:#08183A;color:#fff}
+.fi{width:100%;background:transparent;border:0;border-bottom:1px solid currentColor;padding:.9rem 0;outline:none;color:inherit;font:inherit;opacity:.9}
+.fi::placeholder{color:inherit;opacity:.45}.fi option{color:#08183A}.fi:focus{border-bottom-width:2px}
+.inp{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12);color:#fff;padding:.75rem 1rem;outline:none;border-radius:8px}.inp:focus{border-color:#fff}
+.pill{border:1px solid rgba(255,255,255,.25);padding:.45rem 1rem;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;border-radius:999px;transition:.3s;cursor:pointer}.pill:hover{background:#fff;color:#08183A}
