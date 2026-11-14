@@ -1,6 +1,7 @@
+import {meta} from '@/lib/seo';
 import {getContent} from '@/lib/db';import {digits} from '@/lib/defaults';import Crumb from '@/components/Crumb';import LeadForm from '@/components/LeadForm';
-export const revalidate=60;
-export const metadata={title:'Contact Us',description:'Call, WhatsApp or send an enquiry for printer rental, toners and bulk printing.',alternates:{canonical:'/contact'}};
+export const revalidate=3600;
+export async function generateMetadata(){return meta(await getContent(),'contact','/contact')}
 export default async function C(){const t=await getContent();
 const R=({h,l,v,x})=><a href={h} {...(x?{target:'_blank',rel:'noopener noreferrer'}:{})} className="flex justify-between gap-4 py-5 border-t border-white/20 hover:pl-3 transition-all"><span className="text-xs uppercase tracking-widest text-white/50">{l}</span><span className="font-serif text-xl md:text-2xl">{v}</span></a>;
 return <main className="px-6 md:px-12 pt-32 pb-24 max-w-6xl mx-auto"><Crumb items={[['Contact','/contact']]}/><h1 className="font-serif text-5xl md:text-7xl mb-14">{t.contact_title}</h1>

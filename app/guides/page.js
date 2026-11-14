@@ -1,0 +1,5 @@
+import Link from 'next/link';import {getContent} from '@/lib/db';import {G} from '@/lib/guides';import {meta} from '@/lib/seo';import Crumb from '@/components/Crumb';
+export const revalidate=3600;
+export async function generateMetadata(){return meta(await getContent(),'guides','/guides')}
+export default function Gd(){return <main className="px-6 md:px-12 pt-32 pb-24 max-w-5xl mx-auto"><Crumb items={[['Guides','/guides']]}/><h1 className="font-serif text-5xl md:text-6xl">Printing Guides &amp; Resources</h1><p className="mt-6 text-white/65 text-lg max-w-2xl">Practical guides on managed printer services, printer rental and PaperCut for universities, banks and offices in Pakistan.</p>
+<div className="mt-12">{G.map(g=><Link key={g.slug} href={'/guides/'+g.slug} className="group block py-8 border-t border-white/20 hover:bg-white hover:text-black transition-all duration-500 md:px-6"><h2 className="font-serif text-3xl">{g.title}</h2><p className="mt-3 text-white/60 group-hover:text-black/70 max-w-2xl">{g.d}</p><span className="inline-block mt-4 text-xs uppercase tracking-widest">Read guide →</span></Link>)}</div></main>}

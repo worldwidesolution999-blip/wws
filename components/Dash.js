@@ -3,7 +3,7 @@ const j=(m,b)=>({method:m,headers:{'Content-Type':'application/json'},body:JSON.
 const wa=s=>{let d=(s||'').replace(/\D/g,'');if(d.startsWith('0'))d='92'+d.slice(1);return 'https://wa.me/'+d};
 const SET=['phone','whatsapp','email','address'];
 const LB={phone:'Call button number',whatsapp:'WhatsApp button number (e.g. +923001234567)',email:'Email address',address:'Address'};
-const grp=k=>/^(pc_|ng_|mf_)/.test(k)?'PaperCut':/^(vision|mission|promise|pr\d|about_long|who)/.test(k)?'About Page':/^(clients|cta|footer_text)/.test(k)?'Clients & Footer':k.startsWith('hero')?'Hero':/^(about|stat)/.test(k)?'About':/^(services|s\d)/.test(k)?'Services':k.startsWith('products')?'Products':/^lead/.test(k)?'Lead Form':/^(faq|[qa]\d)/.test(k)?'FAQ':'Brand & Footer';
+const grp=k=>/^m_/.test(k)?'SEO Meta (Titles & Descriptions)':/^qf/.test(k)?'Quick Facts (AI & search)':/^(pc_|ng_|mf_)/.test(k)?'PaperCut':/^(vision|mission|promise|pr\d|about_long|who)/.test(k)?'About Page':/^(clients|cta|footer_text)/.test(k)?'Clients & Footer':k.startsWith('hero')?'Hero':/^(about|stat)/.test(k)?'About':/^(services|s\d)/.test(k)?'Services':k.startsWith('products')?'Products':/^lead/.test(k)?'Lead Form':/^(faq|[qa]\d)/.test(k)?'FAQ':'Brand & Footer';
 const card='rounded-2xl border border-white/10 bg-white/[.03]';
 async function shrink(file,max,png){const img=await new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src=URL.createObjectURL(file)});
 const k=Math.min(1,max/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);const x=c.getContext('2d');
