@@ -1,0 +1,5 @@
+'use client';import {useState,useEffect} from 'react';
+export default function Zoom({src,alt}){const [o,s]=useState(false);
+useEffect(()=>{if(!o)return;const k=e=>e.key==='Escape'&&s(false);document.addEventListener('keydown',k);document.body.style.overflow='hidden';return()=>{document.removeEventListener('keydown',k);document.body.style.overflow=''}},[o]);
+return <><button type="button" onClick={()=>s(true)} aria-label="Enlarge image" className="relative block w-full aspect-[4/3] bg-white cursor-zoom-in overflow-hidden"><img src={src} alt={alt} className="w-full h-full object-contain"/><span className="absolute bottom-3 right-3 bg-black/70 text-white text-[10px] tracking-widest uppercase px-3 py-1">Tap to enlarge</span></button>
+{o&&<div onClick={()=>s(false)} className="fixed inset-0 z-[60] bg-black/95 grid place-items-center p-4 cursor-zoom-out"><img src={src} alt={alt} className="max-w-full max-h-full object-contain"/><span className="absolute top-5 right-6 text-3xl text-white" aria-hidden="true">✕</span></div>}</>}

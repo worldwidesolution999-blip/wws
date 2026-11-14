@@ -1,3 +1,4 @@
+import {G} from '@/lib/guides';
 import {meta} from '@/lib/seo';
 import Link from 'next/link';import {getContent,getProducts,getClients} from '@/lib/db';import {SV} from '@/lib/defaults';
 import Reveal from '@/components/Reveal';import PCard from '@/components/PCard';import SplitText from '@/components/SplitText';import Counter from '@/components/Counter';import HeroFx from '@/components/HeroFx';import QuickFacts from '@/components/QuickFacts';import Who from '@/components/Who';import PCCard from '@/components/PCCard';import Clients from '@/components/Clients';
@@ -29,10 +30,13 @@ return <main id="top">
 <span className="font-serif text-white/40 group-hover:text-black/40">0{i+1}</span><h3 className="font-serif text-2xl md:text-3xl">{t['s'+(i+1)+'_title']}</h3><p className="text-white/60 group-hover:text-black/70">{t['s'+(i+1)+'_text']}</p></Link></Reveal>)}</section>
 <QuickFacts t={t}/>
 <section className="w px-6 md:px-12 py-24"><div className="max-w-6xl mx-auto"><Reveal><p className="text-xs tracking-[.4em] uppercase text-black/50 mb-4">Software</p><h2 className="font-serif text-4xl md:text-6xl">{t.pc_title}</h2><p className="mt-4 text-black/60 max-w-2xl mb-12">{t.pc_intro}</p></Reveal>
-<div className="grid md:grid-cols-2 gap-6"><Reveal><PCCard t={t} e="ng"/></Reveal><Reveal d={.1}><PCCard t={t} e="mf"/></Reveal></div></div></section>
+<div className="grid md:grid-cols-2 gap-6"><Reveal><PCCard t={t} e="ng"/></Reveal><Reveal d={.1}><PCCard t={t} e="mf"/></Reveal></div><Reveal><Link href="/guides/papercut-ng-vs-mf" className="btn mt-10">PaperCut NG vs MF guide</Link></Reveal></div></section>
 {C.length>0&&<section className="px-6 md:px-12 py-24"><div className="max-w-6xl mx-auto"><Reveal><h2 className="font-serif text-4xl md:text-6xl text-center mb-14">{t.clients_title}</h2><Clients items={C}/></Reveal></div></section>}
 <section className="w px-6 md:px-12 py-24"><div className="max-w-6xl mx-auto"><Reveal><h2 className="font-serif text-4xl md:text-6xl">{t.products_title}</h2><p className="mt-4 text-black/60 mb-12">{t.products_sub}</p></Reveal>
 {!P.length&&<p className="text-black/40">Products coming soon.</p>}
 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">{P.slice(0,3).map((p,i)=><Reveal key={p.id} d={i*.08}><PCard p={p}/></Reveal>)}</div>
 <Reveal><Link href="/products" className="btn mt-12">View all products</Link></Reveal></div></section>
+<section className="px-6 md:px-12 py-24"><div className="max-w-6xl mx-auto"><Reveal><h2 className="font-serif text-4xl md:text-6xl mb-12">Guides &amp; answers</h2></Reveal>
+<div className="grid md:grid-cols-3 gap-6">{G.map((g,i)=><Reveal key={g.slug} d={i*.08}><Link href={'/guides/'+g.slug} className="group block h-full border border-white/20 p-8 hover:bg-white hover:text-black transition duration-500"><h3 className="font-serif text-2xl">{g.title}</h3><p className="mt-3 text-sm text-white/60 group-hover:text-black/70">{g.d}</p><span className="inline-block mt-5 text-xs uppercase tracking-widest">Read guide →</span></Link></Reveal>)}</div>
+<Reveal><div className="mt-10 flex flex-wrap gap-3"><Link href="/faq" className="pill">FAQs</Link><Link href="/about" className="pill">About us</Link><Link href="/services/managed-printer-services" className="pill">Managed printer services</Link><Link href="/services/printer-rental" className="pill">Rental printers in Pakistan</Link><Link href="/services/print-servers" className="pill">Print servers</Link><Link href="/papercut" className="pill">PaperCut software</Link><Link href="/contact" className="pill">Contact</Link></div></Reveal></div></section>
 </main>}

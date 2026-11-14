@@ -20,15 +20,20 @@ function LeadCard({l,call,reload}){return <div className={card+' p-5 '+(l.status
 <div className="flex flex-wrap gap-2 mt-5"><a className="pill" href={'tel:'+l.phone}>Call {l.phone}</a><a className="pill" href={wa(l.phone)} target="_blank" rel="noopener noreferrer">WhatsApp</a>{l.email&&<a className="pill" href={'mailto:'+l.email}>Email</a>}
 <button className="pill" onClick={async()=>{if(await call('/api/leads','PATCH',{id:l.id,status:l.status==='new'?'contacted':'new'}))reload()}}>{l.status==='new'?'Mark contacted':'Mark new'}</button>
 <button className="pill" onClick={async()=>{if(confirm('Delete lead?')&&await call('/api/leads','DELETE',{id:l.id}))reload()}}>Delete</button></div></div>}
-function PRow({p,call,reload}){const [v,setV]=useState(p);const c=k=>e=>setV({...v,[k]:e.target.value});
-return <div className={card+' p-5 grid gap-4'}><Up value={v.image} onChange={x=>setV({...v,image:x})} label="Upload photo"/>
+function Thumb({src,png}){return src?<img src={src} alt="" className="h-14 w-14 object-contain bg-white rounded shrink-0"/>:<div className="h-14 w-14 border border-dashed border-white/20 rounded shrink-0"/>}
+function PRow({p,call,reload}){const [v,setV]=useState(p);const [o,setO]=useState(false);const c=k=>e=>setV({...v,[k]:e.target.value});
+return <div className={card+' overflow-hidden'}><div onClick={()=>setO(!o)} role="button" className="flex items-center gap-4 p-3 cursor-pointer hover:bg-white/[.04]"><Thumb src={v.image}/>
+<div className="min-w-0 flex-1"><p className="font-serif text-xl truncate">{v.name||'Untitled'}</p><p className="text-xs text-white/40 truncate">{v.category||'No category'}</p></div><span className="text-[10px] uppercase tracking-widest text-white/50 pr-2">{o?'Close':'Tap to edit'}</span></div>
+{o&&<div className="p-5 grid gap-4 border-t border-white/10"><Up value={v.image} onChange={x=>setV({...v,image:x})} label="Upload photo"/>
 <div className="grid sm:grid-cols-2 gap-3"><input className="inp" value={v.name||''} onChange={c('name')} placeholder="Product name"/><input className="inp" value={v.category||''} onChange={c('category')} placeholder="Category"/></div>
 <textarea className="inp" rows={3} value={v.descr||''} onChange={c('descr')} placeholder="Description"/>
-<div className="flex gap-2"><button className="pill" onClick={async()=>{if(await call('/api/products','PUT',v))reload('Product saved')}}>Save</button><button className="pill" onClick={async()=>{if(confirm('Delete product?')&&await call('/api/products','DELETE',{id:p.id}))reload()}}>Delete</button></div></div>}
-function CRow({p,call,reload}){const [v,setV]=useState(p);
-return <div className={card+' p-5 grid gap-4'}><Up value={v.logo} onChange={x=>setV({...v,logo:x})} png max={800} label="Upload logo"/>
+<div className="flex gap-2"><button className="pill" onClick={async()=>{if(await call('/api/products','PUT',v))reload('Product saved')}}>Save</button><button className="pill" onClick={async()=>{if(confirm('Delete product?')&&await call('/api/products','DELETE',{id:p.id}))reload()}}>Delete</button></div></div>}</div>}
+function CRow({p,call,reload}){const [v,setV]=useState(p);const [o,setO]=useState(false);
+return <div className={card+' overflow-hidden'}><div onClick={()=>setO(!o)} role="button" className="flex items-center gap-4 p-3 cursor-pointer hover:bg-white/[.04]"><Thumb src={v.logo}/>
+<div className="min-w-0 flex-1"><p className="font-serif text-xl truncate">{v.name||'Untitled'}</p></div><span className="text-[10px] uppercase tracking-widest text-white/50 pr-2">{o?'Close':'Tap to edit'}</span></div>
+{o&&<div className="p-5 grid gap-4 border-t border-white/10"><Up value={v.logo} onChange={x=>setV({...v,logo:x})} png max={800} label="Upload logo"/>
 <input className="inp" value={v.name||''} onChange={e=>setV({...v,name:e.target.value})} placeholder="Client name"/>
-<div className="flex gap-2"><button className="pill" onClick={async()=>{if(await call('/api/clients','PUT',v))reload('Client saved')}}>Save</button><button className="pill" onClick={async()=>{if(confirm('Delete client?')&&await call('/api/clients','DELETE',{id:p.id}))reload()}}>Delete</button></div></div>}
+<div className="flex gap-2"><button className="pill" onClick={async()=>{if(await call('/api/clients','PUT',v))reload('Client saved')}}>Save</button><button className="pill" onClick={async()=>{if(confirm('Delete client?')&&await call('/api/clients','DELETE',{id:p.id}))reload()}}>Delete</button></div></div>}</div>}
 export default function Dash(){const [tab,setTab]=useState('o');const [C,setC]=useState({});const [P,setP]=useState([]);const [L,setL]=useState([]);const [K,setK]=useState([]);
 const [H,setH]=useState(null);const [q,setQ]=useState('');const [msg,setMsg]=useState('');const [err,setErr]=useState('');const [exp,setExp]=useState(false);
 const flash=m=>{setMsg(m);setTimeout(()=>setMsg(''),2500)};
